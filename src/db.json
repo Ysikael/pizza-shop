@@ -1,0 +1,25 @@
+{
+  "pizzas": [
+    {
+      "id": 1,
+      "name": "Savoyarde",
+      "ingredients": ["Olives", "Tomates", "Reblochon"],
+      "imageUrl": "https://picsum.photos/350",
+      "price": 8.99
+    },
+    {
+      "id": 2,
+      "name": "Savoyarde",
+      "ingredients": ["Olives", "Tomates", "Reblochon"],
+      "imageUrl": "https://picsum.photos/350",
+      "price": 8.99
+    },
+    {
+      "id": 3,
+      "name": "Savoyarde",
+      "ingredients": ["Olives", "Tomates", "Reblochon"],
+      "imageUrl": "https://picsum.photos/350",
+      "price": 8.99
+    }
+  ]
+}
