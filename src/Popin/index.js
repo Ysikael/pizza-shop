@@ -9,10 +9,11 @@ import {
   DialogActions,
 } from "@material-ui/core";
 
-export default function Popin({ open, title, children, actions }) {
+export default function Popin({ open, title, children, actions, onClose }) {
   return (
     <Dialog
       open={open}
+      onClose={onClose}
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
@@ -48,6 +49,7 @@ Popin.propTypes = {
       primary: bool,
     })
   ),
+  onClose: func,
 };
 
 Popin.defaultProps = {
