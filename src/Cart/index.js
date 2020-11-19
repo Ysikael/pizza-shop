@@ -1,5 +1,4 @@
-import { bool, func, arrayOf, shape, number, string } from "prop-types";
-import Popin from "../Popin";
+import { arrayOf, shape, number, string } from "prop-types";
 import {
   TableContainer,
   TableCell,
@@ -8,33 +7,16 @@ import {
   TableHead,
   Paper,
   TableBody,
+  Typography,
 } from "@material-ui/core";
-import { isNotEmpty } from "ramda-adjunct";
+import { isEmpty } from "ramda";
 import React from "react";
 import Price from "../Price";
 
-export default function PopinCart({ open, hidePopinCart, cart, reset }) {
-  const actions = [
-    { label: "Annuler", onClick: hidePopinCart },
-    {
-      label: "Commander",
-      primary: true,
-      onClick: () => {
-        reset();
-        hidePopinCart();
-      },
-    },
-  ];
+export default function Cart({ cart }) {
+  if (isEmpty(cart)) return <Typography>"pas de pizzas"</Typography> ;
 
   return (
-    <Popin
-      open={open}
-      onClose={hidePopinCart}
-      title="Passer commande"
-      actions={actions}
-    >
-      Récaputilatifs des commandes
-      {isNotEmpty(cart) ? (
         <TableContainer component={Paper}>
           <Table
             //className={classes.table}
@@ -61,16 +43,10 @@ export default function PopinCart({ open, hidePopinCart, cart, reset }) {
             </TableBody>
           </Table>
         </TableContainer>
-      ) : (
-        "pas de pizzas"
-      )}
-    </Popin>
   );
 }
 
-PopinCart.propTypes = {
-  open: bool,
-  hidePopinCart: func,
+Cart.propTypes = {
   cart: arrayOf(
     shape({
       id: number,
@@ -79,11 +55,9 @@ PopinCart.propTypes = {
       addedAt: number,
     })
   ),
-  reset: func,
+
 };
 
-PopinCart.defaultProps = {
-  open: false,
-  hidePopinCart: Function.protoTypes,
+Cart.defaultProps = {
   cart: [],
 };

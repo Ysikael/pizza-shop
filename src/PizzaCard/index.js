@@ -1,26 +1,25 @@
-import React from "react";
+import { arrayOf, func, number, string } from "prop-types";
 import {
+  Button,
   Card,
+  CardActions,
   CardContent,
   CardMedia,
+  IconButton,
   Typography,
-  Button,
-  CardActions,
 } from "@material-ui/core";
-import { arrayOf, number, string, func } from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import AddBoxIcon from "@material-ui/icons/AddBox";
-import IndeterminateCheckBox from "@material-ui/icons/IndeterminateCheckBox";
-import IconButton from "@material-ui/core/IconButton";
-import Price from "../Price";
-import { PIZZAS_MAX_COUNT } from "../pizzas";
+import React from "react";
+import { AddBox, IndeterminateCheckBox } from "@material-ui/icons";
 import { useCounter } from "react-use";
+
+import { PIZZAS_MAX_COUNT } from "../pizzas";
+import Price from "../Price";
 
 const imageSize = 175;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    //maxWidth: imageSize,
     margin: `${theme.spacing(2)}px`,
   },
   button: {
@@ -39,6 +38,13 @@ export default function PizzaCard({
   const classes = useStyles();
 
   const [pizzaCount, { dec, inc }] = useCounter(1, PIZZAS_MAX_COUNT, 1);
+
+  const addedPizzas = Array.from(new Array(pizzaCount), () => ({
+    id,
+    name,
+    price,
+    addedAt: Date.now(),
+  }));
 
   return (
     <Card className={classes.root}>
@@ -66,7 +72,7 @@ export default function PizzaCard({
         </IconButton>
         <span>{pizzaCount}</span>
         <IconButton aria-label="plus" onClick={() => inc()}>
-          <AddBoxIcon fontSize="inherit" />
+          <AddBox fontSize="inherit" />
         </IconButton>
       </CardContent>
       <CardActions>
@@ -75,10 +81,10 @@ export default function PizzaCard({
           color="primary"
           variant="contained"
           onClick={() => {
-            addToCart({ id, name, price, addedAt: Date.now() });
+            addToCart(...addedPizzas);
           }}
         >
-          Ajouter au panier
+          Ajouter
         </Button>
       </CardActions>
     </Card>
@@ -86,14 +92,15 @@ export default function PizzaCard({
 }
 
 PizzaCard.propTypes = {
-  id: Number,
+  id: number,
   name: string.isRequired,
   ingredients: arrayOf(string).isRequired,
   price: number.isRequired,
   imageUrl: string,
-  onClick: func,
+  addToCart: func,
 };
 
 PizzaCard.defaultProps = {
   imageUrl: null,
+  addToCart: Function.prototype,
 };

@@ -5,56 +5,56 @@
       "name": "Savoyarde",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
-      "price": 8.99
+      "price": 12.99
     },
     {
       "id": 2,
-      "name": "Savoyarde",
+      "name": "Reine",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
-      "price": 8.99
+      "price": 10.99
     },
     {
       "id": 3,
-      "name": "Savoyarde",
+      "name": "Vegetarienne",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
-      "price": 8.99
+      "price": 9.99
     },
     {
       "id": 4,
-      "name": "Savoyarde",
+      "name": "Norvégienne",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
-      "price": 8.99
+      "price": 11.99
     },
     {
       "id": 5,
-      "name": "Savoyarde",
+      "name": "Calzone",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
-      "price": 8.99
+      "price": 12.99
     },
     {
       "id": 6,
-      "name": "Savoyarde",
+      "name": "Peperroni",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
       "price": 8.99
     },
     {
       "id": 7,
-      "name": "Savoyarde",
+      "name": "Campagnarde",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
       "price": 8.99
     },
     {
       "id": 8,
-      "name": "Savoyarde",
+      "name": "Bidule",
       "ingredients": ["Olives", "Tomates", "Reblochon"],
       "imageUrl": "https://picsum.photos/350",
-      "price": 8.99
+      "price": 14.99
     }
   ]
 }

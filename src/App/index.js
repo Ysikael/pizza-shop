@@ -1,49 +1,25 @@
 import React from "react";
-import { CircularProgress, CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
-import { useQuery } from "react-query";
-import { useList } from "react-use";
-
-import Header from "../Header";
+import { CssBaseline } from "@material-ui/core";
 import { theme } from "./theme";
-import PizzaList from "../PizzaList";
-import PopinCart from "../PopinCart";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import routes from "./routes";
+import { Provider } from "react-redux";
+import store from "./store"
 
-const fetchPizzas = () => {
-  const baseUrlApi =
-    process.env.REACT_APP_BASE_URL_API || "http://localhost:3001";
-  return fetch(`${baseUrlApi}/pizzas`).then((response) => response.json());
-};
 
 export default function App() {
-  //const [pizzas, setPizzas] = React.useState([]);
-  const { status, data } = useQuery("pizzas", fetchPizzas);
-  const [popinCartOpen, setPopinCartOpen] = React.useState(false);
-  const [cart, { push, reset }] = useList([]);
-
-  const displayPopinCart = () => {
-    setPopinCartOpen(true);
-  };
-
-  const hidePopinCart = () => {
-    setPopinCartOpen(false);
-  };
-
+  //const [pizzas, setPizzas] = React.useState([])
   return (
+    <Provider store={store}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Header
-        ShoppingCartCount={cart.length}
-        displayPopinCart={displayPopinCart}
-      />
-      {status === "loading" && <CircularProgress />}
-      {status === "success" && <PizzaList data={data} addToCart={push} />}
-      <PopinCart
-        open={popinCartOpen}
-        hidePopinCart={hidePopinCart}
-        reset={reset}
-        cart={cart}
-      />
-    </ThemeProvider>
+      <Router>
+        {Object.values(routes).map((route) => (
+          <Route key={route.path} exact {...route} />
+        ))}
+      </Router>
+      </ThemeProvider>
+      </Provider>
   );
 }
